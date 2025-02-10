@@ -105,6 +105,7 @@ const MovieList = () => {
   };
   return (
     <>
+    {/* fhgfhgfj */}
       <section className="">
         <div className="max-w-7xl mx-auto py-20">
           <Carousel
