@@ -114,7 +114,7 @@ const MovieList = () => {
             responsive={responsive}
             infinite={true}
             autoPlay={true}
-            autoPlaySpeed={500} // Speed up autoplay for better flow
+            autoPlaySpeed={5000} // Speed up autoplay for better flow
             keyBoardControl={true}
             customTransition="transform 0.5s ease-in-out"
             transitionDuration={500} // 500ms duration for a smooth transition
