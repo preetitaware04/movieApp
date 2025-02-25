@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/16/solid";
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-const MovieList = () => {
-  const [movies, setMovies] = useState([]);
+const MovieList = ({ movies }) => {
+  // const [movies, setMovies] = useState([]);
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -23,18 +24,18 @@ const MovieList = () => {
     },
   };
 
-  const getMoviesList = async () => {
-    const url = "http://www.omdbapi.com/?s=avengers&apikey=f6414c4e";
+  // const getMoviesList = async () => {
+  //   const url = "http://www.omdbapi.com/?s=avengers&apikey=f6414c4e";
 
-    const response = await fetch(url);
-    const jsonResponse = await response.json();
-    console.log(jsonResponse);
-    setMovies(jsonResponse.Search);
-  };
+  //   const response = await fetch(url);
+  //   const jsonResponse = await response.json();
+  //   console.log(jsonResponse);
+  //   setMovies(jsonResponse.Search);
+  // };
 
-  useEffect(() => {
-    getMoviesList();
-  }, []);
+  // useEffect(() => {
+  //   getMoviesList();
+  // }, []);
 
   return (
     <>
@@ -45,7 +46,7 @@ const MovieList = () => {
             draggable={true}
             responsive={responsive}
             infinite={true}
-            autoPlay={true}
+            // autoPlay={true}
             autoPlaySpeed={5000} // Speed up autoplay for better flow
             keyBoardControl={true}
             customTransition="transform 0.5s ease-in-out"
@@ -67,10 +68,10 @@ const MovieList = () => {
                 <div className="flex justify-center py-5" key={index}>
                   <div
                     key={index}
-                    className="w-[75%] shrink-0 flex justify-center"
+                    className="w-[75%] shrink-0 flex justify-center relative hover:cursor-pointer transition-transform hover:scale-110"
                   >
-                    <div></div>
-                    <img src={movie.Poster} alt={movie.Type} />
+                    <img src={movie.Poster} alt={movie.Type} className="" />
+                    <div className="absolute bg-gray-500 w-full transition-all duration-500 opacity-0 hover:opacity-100 bottom-0 text-lg p-5 text-center"></div>
                   </div>
                 </div>
               ))}
