@@ -2,9 +2,8 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/16/solid';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import AddFavourites from './AddFavourites';
 
-const MovieList = ({ movies, handleFavouritesList }) => {
+const MovieList = ({ movies, handleFavouritesList, favouritesComponent }) => {
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -22,6 +21,8 @@ const MovieList = ({ movies, handleFavouritesList }) => {
       slidesToSlide: 1, // optional, default to 1.
     },
   };
+
+  const FavouriteComponent = favouritesComponent;
 
   return (
     <>
@@ -62,7 +63,7 @@ const MovieList = ({ movies, handleFavouritesList }) => {
                       className={`absolute bg-gray-500 w-full transition-all duration-500 opacity-0 hover:opacity-100 bottom-0 text-lg p-2 text-center flex justify-center 
                       }`}
                     >
-                      <AddFavourites />
+                      <FavouriteComponent />
                     </div>
                   </div>
                 </div>
