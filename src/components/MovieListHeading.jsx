@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import React from "react";
 import { FaSearch } from "react-icons/fa";
 
 const MovieListHeading = ({ searchValue, setSearchValue }) => {
