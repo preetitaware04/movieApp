@@ -5,7 +5,7 @@ const RemoveFavourites = () => {
     <div className="flex gap-x-2">
           <span className="text-sm">Remove favourites </span>
           <CiCircleRemove
-            className={`font-bold text-red-700 w-5 h-auto`}
+            className={`font-extrabold text-white w-5 h-auto`}
           />
         </div>
   )

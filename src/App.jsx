@@ -1,10 +1,10 @@
-import './App.css';
-import { useState, useEffect } from 'react';
-import MovieList from './components/MovieList';
-import MovieListHeading from './components/MovieListHeading';
-import SearchBox from './components/SearchBox';
-import AddFavourites from './components/AddFavourites';
-import RemoveFavourites from './components/RemoveFavourites';
+import "./App.css";
+import { useState, useEffect } from "react";
+import MovieList from "./components/MovieList";
+import MovieListHeading from "./components/MovieListHeading";
+import SearchBox from "./components/SearchBox";
+import AddFavourites from "./components/AddFavourites";
+import RemoveFavourites from "./components/RemoveFavourites";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -23,12 +23,23 @@ function App() {
   };
 
   useEffect(() => {
+    const movieFavourites = JSON.parse(localStorage.getItem("favourites"));
+
+    setFavourites(movieFavourites);
+  }, []);
+
+  useEffect(() => {
     getMoviesList(searchValue);
   }, [searchValue]);
+
+  const saveToLocalStorage = (items) => {
+    localStorage.setItem("favourites", JSON.stringify(items));
+  };
 
   const AddFavouritesMovie = (movie) => {
     const newFavouriteMovie = [...favourites, movie];
     setFavourites(newFavouriteMovie);
+    saveToLocalStorage(newFavouriteMovie);
   };
 
   const RemoveFavouritesMovie = (movie) => {
@@ -36,11 +47,12 @@ function App() {
       (favourite) => favourite.imdbID != movie.imdbID
     );
     setFavourites(newFavouriteMovie);
+    saveToLocalStorage(newFavouriteMovie);
   };
   return (
     <>
-      <div className='max-w-7xl mx-auto pt-10 pb-3 flex justify-between items-center'>
-        <MovieListHeading heading={'Movies'} />
+      <div className="max-w-7xl mx-auto pt-10 pb-3 flex justify-between items-center">
+        <MovieListHeading heading={"Movies"} />
         <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
       </div>
       <MovieList
@@ -49,8 +61,8 @@ function App() {
         favouritesComponent={AddFavourites}
       />
 
-      <div className='max-w-7xl mx-auto pt-10 pb-3 flex justify-between items-center'>
-        <MovieListHeading heading={'Favourites'} />
+      <div className="max-w-7xl mx-auto pt-10 pb-3 flex justify-between items-center">
+        <MovieListHeading heading={"Favourites"} />
       </div>
       <MovieList
         movies={favourites}
